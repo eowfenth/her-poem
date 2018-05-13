@@ -4,55 +4,71 @@
  * @flow
  */
 
-import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
-
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
-
-type Props = {};
-export default class App extends Component<Props> {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
-      </View>
-    );
-  }
-}
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import Swiper from 'react-native-deck-swiper';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#840f1b',
+  },
+  card: {
+    flex: 1,
+    borderRadius: 4,
+    borderWidth: 2,
+    borderColor: '#E8E8E8',
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: 'white',
   },
-  welcome: {
+  text: {
+    textAlign: 'center',
+    fontSize: 50,
+    backgroundColor: 'transparent',
+  },
+  poemTitle: {
     fontSize: 20,
+    fontWeight: 'bold',
     textAlign: 'center',
-    margin: 10,
   },
-  instructions: {
+  poemContainer: {
+    justifyContent: 'center',
+  },
+  poemText: {
+    fontSize: 18,
     textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
   },
 });
+
+
+const Poem = () => (
+  <View style={styles.poemContainer}>
+    <Text style={styles.poemTitle}>lorem</Text>
+    <Text />
+    <Text style={styles.poemText}>Repellendus quis</Text>
+    <Text style={styles.poemText}>perferendis sed omnis.</Text>
+    <Text style={styles.poemText}>Dolorum voluptatem est ut.</Text>
+    <Text style={styles.poemText}>Incidunt ipsum odit</Text>
+    <Text style={styles.poemText}>voluptatibus magni</Text>
+    <Text style={styles.poemText}>libero temporibus.</Text>
+  </View>
+);
+
+const App = () => (
+  <View style={styles.container}>
+    <Swiper
+      cards={['Poem']}
+      infinite
+      renderCard={card => (
+        <View style={styles.card}>
+          {card === 'Poem' && <Poem />}
+        </View>
+      )}
+      cardIndex={0}
+      backgroundColor="#840f1b"
+      stackSize={3}
+    />
+  </View>
+);
+
+export default App;
